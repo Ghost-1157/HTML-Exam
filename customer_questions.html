@@ -79,31 +79,29 @@
             background-color: #800000;
         }
 
-        /* Dark mode styles */
         .dark-mode {
             background-color: #333;
             color: #fff;
         }
 
         .dark-mode .header {
-            background-color: #555; /* Change header background to dark gray */
+            background-color: #555;
         }
 
         .dark-mode footer {
-            background-color: #555; /* Change footer background to gray */
+            background-color: #555;
         }
 
         .navbar-dark {
-            background-color: #930000; /* Default navbar color */
+            background-color: #930000;
         }
 
         .dark-mode .navbar-dark {
-            background-color: #555; /* Change navbar background to gray in dark mode */
+            background-color: #555;
         }
     </style>
 
     <script>
-        // Toggle Day/Night Mode
         function toggleDayNightMode() {
             const currentMode = localStorage.getItem('mode') || 'light';
             const newMode = currentMode === 'light' ? 'dark' : 'light';
@@ -119,7 +117,6 @@
             }
         }
 
-        // Apply the saved theme on page load
         document.addEventListener('DOMContentLoaded', function () {
             const savedMode = localStorage.getItem('mode') || 'light';
             applyMode(savedMode);
