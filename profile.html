@@ -20,13 +20,11 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
-        /* Container for the profile info */
         .container {
             min-height: 100%;
-            padding-bottom: 80px; /* Ensure space for the footer */
+            padding-bottom: 80px;
         }
 
-        /* Sticky footer */
         footer {
             position: relative;
             bottom: 0;
@@ -35,10 +33,9 @@
             color: white;
             padding: 8px;
             text-align: center;
-            margin-top: auto; /* This pushes the footer to the bottom */
+            margin-top: auto;
         }
 
-        /* Header for profile page */
         .header {
             text-align: center;
             font-size: 30px;
@@ -50,7 +47,6 @@
             padding: 15px;
         }
 
-        /* Navbar Styles */
         .navbar {
             background-color: #930000;
         }
@@ -60,8 +56,7 @@
             background-color: #930000;
             color: white;
         }
-
-        /* Day Mode Button */
+        
         .navbar .btn {
             background: none;
             border: none;
@@ -75,14 +70,13 @@
             background-color: #800000;
         }
 
-        /* Dark Mode Styles */
         .dark-mode {
             background-color: #333;
             color: #fff;
         }
 
         .dark-mode .navbar {
-            background-color: #555; /* Gray navbar in dark mode */
+            background-color: #555;
         }
 
         .dark-mode footer {
@@ -114,7 +108,6 @@
 
     </style>
     <script>
-        // Function to display the profile information after retrieving from localStorage
         function displayProfileInfo() {
             const email = localStorage.getItem('profileEmail');
             const name = localStorage.getItem('profileName');
@@ -129,7 +122,6 @@
             }
         }
 
-        // Wait for the document to load, then call displayProfileInfo
         document.addEventListener("DOMContentLoaded", function () {
             displayProfileInfo();
             // Apply the saved theme on page load
@@ -137,15 +129,13 @@
             applyMode(savedMode);
         });
 
-        // Function to toggle Day/Night mode
         function toggleDayNightMode() {
             const currentMode = localStorage.getItem('mode') || 'light';
             const newMode = currentMode === 'light' ? 'dark' : 'light';
             localStorage.setItem('mode', newMode);
             applyMode(newMode);
         }
-
-        // Apply the selected mode to the body, navbar, and header
+        
         function applyMode(mode) {
             if (mode === 'dark') {
                 document.body.classList.add('dark-mode');
@@ -161,8 +151,6 @@
 </head>
 
 <body>
-
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="main.html">Tsuri Food</a>
@@ -188,7 +176,6 @@
         </div>
     </nav>
 
-    <!-- Profile Page Content -->
     <div class="header">
         <h1>User Profile</h1>
     </div>
@@ -210,9 +197,8 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
-        <p>All Rights Reserved © Tsuri Food 2023</p>
+        <p>All Rights Reserved © Tsuri Food 2024</p>
     </footer>
 
 </body>
