@@ -25,10 +25,6 @@
             max-width: 500px;
         }
 
-        .form-group {
-            margin-bottom: 15px;
-        }
-
         .card-title {
             text-align: center;
             color: #930000;
@@ -44,34 +40,6 @@
             width: 100%;
         }
 
-        .auth-info {
-            font-size: 16px;
-            color: #555;
-        }
-
-        .auth-info a {
-            color: #930000;
-        }
-
-        .navbar .nav-link.active {
-            font-weight: bold;
-            background-color: #930000;
-            color: white;
-        }
-
-        .navbar .btn {
-            background: none;
-            border: none;
-            color: #ffffff;
-            font-size: 16px;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-
-        .navbar .btn:hover {
-            background-color: #800000;
-        }
-        
         .navbar {
             background-color: #930000;
         }
@@ -81,11 +49,7 @@
             color: #fff;
         }
 
-        .dark-mode .navbar {
-            background-color: #555;
-        }
-
-        .dark-mode footer {
+        .dark-mode .navbar, .dark-mode footer {
             background-color: #555;
         }
 
@@ -94,24 +58,10 @@
             color: #fff;
         }
 
-        .dark-mode .form-group label {
-            color: #fff;
-        }
-
         .dark-mode .form-control {
             background-color: #666;
             color: #fff;
-            border-color: #555;
         }
-
-        .dark-mode .auth-info {
-            color: #ddd;
-        }
-
-        .dark-mode .auth-info a {
-            color: #930000;
-        }
-
     </style>
 </head>
 
@@ -137,19 +87,17 @@
                     </li>
                 </ul>
                 <button class="btn mx-2" onclick="toggleDayNightMode()">Toggle Day/Night Mode</button>
-                <button class="btn mx-2" onclick="location.href='login.html'">Log In</button>
             </div>
         </div>
     </nav>
 
     <div class="container">
         <div class="row">
-            <!-- Sign Up Form -->
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Sign Up</h5>
-                        <form action="profile.html" method="POST">
+                        <form id="signupForm">
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control" id="name" name="name" required>
@@ -163,7 +111,7 @@
                                 <input type="password" class="form-control" id="password" name="password" required>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                                <button type="button" class="btn btn-primary btn-block" onclick="saveUserInfo()">Sign Up</button>
                             </div>
                         </form>
                     </div>
@@ -174,7 +122,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Log In</h5>
-                        <form action="profile.html" method="POST">
+                        <form id="loginForm">
                             <div class="form-group">
                                 <label for="login-email">Email</label>
                                 <input type="email" class="form-control" id="login-email" name="email" required>
@@ -184,17 +132,12 @@
                                 <input type="password" class="form-control" id="login-password" name="password" required>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block">Log In</button>
+                                <button type="button" class="btn btn-primary btn-block" onclick="loginUser()">Log In</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="auth-info">
-            <p>If you don’t have an account yet, <a href="login.html#sign-up">sign up here</a>.</p>
-            <p>If you already have an account, simply <a href="login.html#login-form">log in</a> to access your profile.</p>
         </div>
     </div>
 
@@ -222,8 +165,73 @@
             const savedMode = localStorage.getItem('mode') || 'light';
             applyMode(savedMode);
         });
+
+        function saveUserInfo() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            localStorage.setItem('name', name);
+            localStorage.setItem('email', email);
+            localStorage.setItem('password', password);
+
+            alert('User information saved! You can now log in.');
+        }
+
+        function loginUser() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            const storedEmail = localStorage.getItem('email');
+            const storedPassword = localStorage.getItem('password');
+
+            if (email === storedEmail && password === storedPassword) {
+                alert('Login successful! Redirecting to profile page...');
+                window.location.href = 'profile.html';
+            } else {
+                alert('Invalid email or password. Please try again.');
+            }
+        }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const signUpForm = document.querySelector('#signUpForm');
+        const loginForm = document.querySelector('#loginForm');
+
+        if (signUpForm) {
+            signUpForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                localStorage.setItem('profileName', name);
+                localStorage.setItem('profileEmail', email);
+                localStorage.setItem('profilePassword', password);
+
+                window.location.href = 'profile.html';
+            });
+        }
+
+        if (loginForm) {
+            loginForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+
+                const storedEmail = localStorage.getItem('profileEmail');
+                const storedPassword = localStorage.getItem('profilePassword');
+
+                if (email === storedEmail && password === storedPassword) {
+                    window.location.href = 'profile.html';
+                } else {
+                    alert('Invalid login credentials');
+                }
+            });
+        }
+    });
     </script>
 
 </body>
 
 </html>
+
