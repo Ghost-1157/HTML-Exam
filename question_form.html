@@ -55,7 +55,6 @@
             background-color: #800000;
         }
 
-        /* Dark mode styles */
         .dark-mode {
             background-color: #333;
             color: #fff;
@@ -79,7 +78,6 @@
     </style>
 
     <script>
-        // Validate form
         function validateForm() {
             let password = document.getElementById("password").value;
             let question = document.getElementById("question").value;
@@ -102,7 +100,6 @@
             return true;
         }
 
-        // Toggle Day/Night Mode
         function toggleDayNightMode() {
             const currentMode = localStorage.getItem('mode') || 'light';
             const newMode = currentMode === 'light' ? 'dark' : 'light';
@@ -118,7 +115,6 @@
             }
         }
 
-        // Apply the saved theme on page load
         document.addEventListener('DOMContentLoaded', function () {
             const savedMode = localStorage.getItem('mode') || 'light';
             applyMode(savedMode);
@@ -127,8 +123,6 @@
 </head>
 
 <body>
-
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="main.html">Tsuri Food</a>
@@ -145,18 +139,15 @@
                         <a class="nav-link" href="login.html">Log In</a>
                     </li>
                 </ul>
-                <!-- Day/Night Mode button -->
                 <button class="btn mx-2" onclick="toggleDayNightMode()">Toggle Day/Night Mode</button>
             </div>
         </div>
     </nav>
 
-    <!-- Header -->
     <div class="header">
         <h1>Ask a Question</h1>
     </div>
 
-    <!-- Form -->
     <div class="container mt-5">
         <form id="questionForm" onsubmit="return validateForm()">
             <div class="mb-3">
@@ -181,7 +172,6 @@
         </form>
     </div>
 
-    <!-- Script for Reset -->
     <script>
         document.getElementById('resetButton').addEventListener('click', () => {
             document.querySelectorAll('#questionForm input, #questionForm textarea').forEach(input => input.value = '');
@@ -189,7 +179,6 @@
         });
     </script>
 
-    <!-- Footer -->
     <footer class="mt-4">
         <p><a href="main.html" class="btn btn-light">Return to Main Site</a></p>
     </footer>
