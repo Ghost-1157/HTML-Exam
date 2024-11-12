@@ -59,7 +59,6 @@
             color: white;
         }
 
-        /* Styling for buttons to match FAQ button style */
         .navbar .btn {
             background: none;
             border: none;
@@ -72,20 +71,18 @@
         .navbar .btn:hover {
             background-color: #800000;
         }
-
-        /* Day Mode (default) */
+        
         .navbar {
-            background-color: #930000; /* Red navbar in day mode */
+            background-color: #930000;
         }
 
-        /* Dark Mode Styles */
         .dark-mode {
             background-color: #333;
             color: #fff;
         }
 
         .dark-mode .navbar {
-            background-color: #555; /* Gray navbar in dark mode */
+            background-color: #555;
         }
 
         .dark-mode footer {
@@ -120,7 +117,6 @@
 
 <body>
 
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="main.html">Tsuri Food</a>
@@ -140,7 +136,6 @@
                         <a class="nav-link" href="question_form.html">Ask a Question</a>
                     </li>
                 </ul>
-                <!-- Day/Night Mode and Login buttons styled like FAQ button -->
                 <button class="btn mx-2" onclick="toggleDayNightMode()">Toggle Day/Night Mode</button>
                 <button class="btn mx-2" onclick="location.href='login.html'">Log In</button>
             </div>
@@ -175,7 +170,6 @@
                 </div>
             </div>
 
-            <!-- Log In Form -->
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
@@ -205,11 +199,10 @@
     </div>
 
     <footer>
-        <p>All Rights Reserved © Tsuri Food 2023</p>
+        <p>All Rights Reserved © Tsuri Food 2024</p>
     </footer>
 
     <script>
-        // Function to toggle Day/Night mode
         function toggleDayNightMode() {
             const currentMode = localStorage.getItem('mode') || 'light';
             const newMode = currentMode === 'light' ? 'dark' : 'light';
@@ -217,7 +210,6 @@
             applyMode(newMode);
         }
 
-        // Apply the selected mode to the body and navbar
         function applyMode(mode) {
             if (mode === 'dark') {
                 document.body.classList.add('dark-mode');
@@ -226,7 +218,6 @@
             }
         }
 
-        // Apply the saved theme on page load
         document.addEventListener('DOMContentLoaded', function () {
             const savedMode = localStorage.getItem('mode') || 'light';
             applyMode(savedMode);
